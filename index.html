@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+	<meta charset="UTF-8">	
+	<style>
+		body {
+			background-color: #ffcbacff;
+		}
+		table {
+			width: 100%;
+			text-align: center;
+		}
+		th {
+			color: red;
+		}
+	</style>
+	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+</head>
+<body>
+	<table border="1">
+		<tr>	
+			<th>時間</th>		
+			<th>客戶名稱</th>
+			<th>電話</th>
+			<th>維修地點</th>
+			<th>維修日期</th>
+			<th>故障情況</th>
+			<th>處理情況</th>
+			<th>材料及零件</th>			
+		</tr>
+	</table>
+	<script>
+		var webViewString = window.AppInventor.getWebViewString();
+		
+		if(webViewString) {
+			var i, j, trString = "", tdString, rows = webViewString.split("\n");
+			
+			for(i = 0; i < rows.length; i++) {
+				if(rows[i] != "") {
+					trString += "<tr>";
+					tdString = rows[i].split(",");
+					
+					for(j = 0; j < tdString.length; j++)
+						trString += "<td>" + tdString[j] + "</td>";
+					trString += "</tr>";
+				}
+			}
+			$("table").append(trString);
+		}
+	</script>
+</body>
+</html>
